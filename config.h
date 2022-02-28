@@ -8,7 +8,7 @@ static const int showbar            = 1;  // 0 means no bar
 static const int topbar             = 1;  // 0 means bottom- bar
 static const int horizpadbar        = 2;  // horizontal padding for statusbar
 static const int vertpadbar         = 0;  // vertical padding for statusbar
-static const char *fonts[]          = { "monospace:weight=Bold:pixelsize=12", "Symbola:pixelsize=12" };
+static const char *fonts[]          = { "mono:pixelsize=12" };
 static const char dmenufont[]       = "monospace:weight=Bold:pixelsize=12";
 /* tranparency */
 static const unsigned int baralpha = 0xbf;
@@ -20,7 +20,7 @@ static const unsigned int alphas[][3]      = {
 };
 
 /* colors */
-#include "colors-dwm.h"
+#include "colors-wal-dwm.h"
 
 /* tagging */
 static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
@@ -31,9 +31,8 @@ static const Rule rules[] = {
 	 *	WM_NAME(STRING) = title
 	 */
 	/* class          instance    title       tags mask     isfloating    monitor */
-  { "firefox",      NULL,       NULL,       1 << 8,       0,            -1 },
-  { "discord",      NULL,       NULL,       1 << 7,       0,            -1 },
-  { "Steam",        NULL,       NULL,       1 << 6,       0,            -1 },
+  { "firefox",      NULL,       NULL,       1 << 1,       0,            -1 },
+  { "discord",      NULL,       NULL,       1 << 2,       0,            -1 },
   { "st",           "st-float", NULL,       ~0,           1,            -1 },
 };
 
@@ -116,31 +115,27 @@ static Key keys[] = {
   { MODKEY|ShiftMask, XK_space,  togglefloating,  {0} },
 
   /* spawn clients */
-  { MODKEY|ControlMask,           XK_a,   spawn,    SHCMD("st -e calcurse -D $HOME/Documents/calcurse -C $HOME/.config/calcurse") },
-  { MODKEY|ControlMask,           XK_c,   spawn,    STCMD("python")       },
-  { MODKEY|ShiftMask|ControlMask, XK_c,   spawn,    STCMD("mmaxima")      },
-  { MODKEY,                       XK_e,   spawn,    XACMD("emoji-picker") },
-  { MODKEY|ControlMask,           XK_e,   spawn,    XACMD("thunderbird")  },
-  { MODKEY|ControlMask,           XK_f,   spawn,    STCMD("lfcd_sh")      },  // execute lf in st and cd to last dir on exit
-  { MODKEY|ControlMask,           XK_h,   spawn,    XACMD("dpizhid")      },  // private password manager
-  { MODKEY|ControlMask,           XK_i,   spawn,    STCMD("newsboat")     },
-  { MODKEY|ControlMask,           XK_m,   spawn,    XACMD("dmount")       },  // helper to mounting devices
-  { MODKEY,                       XK_m,   spawn,    XACMD("screen_measure") },  // measure distance between 2 points
-  { MODKEY|ControlMask,           XK_n,   spawn,    XACMD("dtodo")        },  // checklist style notetaker
-  { MODKEY|ControlMask,           XK_p,   spawn,    XACMD("gimp")         },
-  { MODKEY|ControlMask,           XK_r,   spawn,    XACMD("firefox")      },
-  { MODKEY|ControlMask,           XK_s,   spawn,    STCMD("ncmpcpp")      },
-  { MODKEY,                       XK_t,   spawn,    XACMD("st")           },
-  { MODKEY|ControlMask,           XK_t,   spawn,    XACMD("xterm")        }, // backup terminal
-  { MODKEY|ShiftMask,             XK_t,   spawn,    XACMD("st-float")     },
-  { MODKEY|ControlMask,           XK_v,   spawn,    XACMD("drecord")      },
-  { MODKEY|ControlMask,           XK_w,   spawn,    STCMD("nvim")         },
-  { MODKEY,                       XK_p,   spawn,    { .v = dmenucmd }     },
-  { MODKEY,                       XK_Return,  spawn,  { .v = dmenucmd }   },
-  { MODKEY,                       XK_Print,   spawn,  XACMD("maim_handler", "screenshot") },  // Full screenshot
-  { MODKEY|ShiftMask,             XK_Print,   spawn,  XACMD("maim_handler", "snip")       },  // Snipping tool
-  { MODKEY|ShiftMask,             XK_s,       spawn,  XACMD("maim_handler", "snip")       },  // Snipping tool
-  { MODKEY|ControlMask,           XK_Print,   spawn,  XACMD("maim_handler")               },  // Diverse options
+  { MODKEY|ControlMask,           XK_c,       spawn,    STCMD("python")                     },
+  { MODKEY|ShiftMask|ControlMask, XK_c,       spawn,    STCMD("mmaxima")                    },
+  { MODKEY,                       XK_d,       spawn,    XACMD("discord")                    },
+  { MODKEY|ControlMask,           XK_e,       spawn,    XACMD("thunderbird")                },
+  { MODKEY|ControlMask,           XK_f,       spawn,    STCMD("lfcd_sh")                    },  // execute lf in st and cd to last dir on exit
+  { MODKEY,                       XK_f,       spawn,    XACMD("thunar")                     },
+  { MODKEY|ControlMask,           XK_m,       spawn,    XACMD("dmount")                     },  // helper to mounting devices
+  { MODKEY,                       XK_m,       spawn,    XACMD("screen_measure")             },  // measure distance between 2 points
+  { MODKEY|ControlMask,           XK_p,       spawn,    XACMD("gimp")                       },
+  { MODKEY,                       XK_r,       spawn,    XACMD("firefox")                    },
+  { MODKEY,                       XK_t,       spawn,    XACMD("st")                         },
+  { MODKEY|ControlMask,           XK_t,       spawn,    XACMD("xterm")                      }, // backup terminal
+  { MODKEY|ShiftMask,             XK_t,       spawn,    XACMD("st-float")                   },
+  { MODKEY|ControlMask,           XK_v,       spawn,    XACMD("drecord")                    },
+  { MODKEY|ControlMask,           XK_w,       spawn,    STCMD("nvim")                       },
+  { MODKEY,                       XK_p,       spawn,    { .v = dmenucmd }                   },
+  { MODKEY,                       XK_Return,  spawn,    { .v = dmenucmd }                   },
+  { MODKEY,                       XK_Print,   spawn,    XACMD("maim_handler", "screenshot") },  // Full screenshot
+  { MODKEY|ShiftMask,             XK_Print,   spawn,    XACMD("maim_handler", "snip")       },  // Snipping tool
+  { MODKEY|ShiftMask,             XK_s,       spawn,    XACMD("maim_handler", "snip")       },  // Snipping tool
+  { MODKEY|ControlMask,           XK_Print,   spawn,    XACMD("maim_handler")               },  // Diverse options
 
   /* vertical movements */
   { MODKEY|ShiftMask,   XK_j,     movestack,    {.i = +1 }  },
