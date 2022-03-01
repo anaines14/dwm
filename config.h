@@ -104,7 +104,7 @@ static Key keys[] = {
   { MODKEY|ControlMask, XK_F5,    spawn,  SHCMD("notify-send -u low 'Current song' \"$(mpc current)\" &") },
   { MODKEY|ShiftMask,   XK_F8,    spawn,  SHCMD("amixer set Capture toggle; dwmblocks -s2") },  // mic mute
   { MODKEY|ControlMask, XK_F8,    spawn,  SHCMD("next_sink; dwmblocks -s2")                 },  // use next pulse sink in list
-  { MODKEY,             XK_F8,    spawn,  SHCMD("amixer set Master toggle; dwmblocks -s2")  },  // volume mute
+  //{ MODKEY,             XK_F8,    spawn,  SHCMD("amixer set Master toggle; dwmblocks -s2")  },  // volume mute
   { MODKEY,             XK_F9,    spawn,  SHCMD("amixer set Master 5%-; dwmblocks -s2")     },  // volume down
   { MODKEY,             XK_F10,   spawn,  SHCMD("amixer set Master 5%+; dwmblocks -s2")     },  // volume up
   { MODKEY,             XK_F8,    spawn,  SHCMD("sudo -A camera_toggle; dwmblocks -s6")     },  // toggle camera
@@ -117,6 +117,7 @@ static Key keys[] = {
   /* spawn clients */
   { MODKEY|ControlMask,           XK_c,       spawn,    STCMD("python")                     },
   { MODKEY|ShiftMask|ControlMask, XK_c,       spawn,    STCMD("mmaxima")                    },
+  { MODKEY,                       XK_c,       spawn,    XACMD("code")                        },
   { MODKEY,                       XK_d,       spawn,    XACMD("discord")                    },
   { MODKEY|ControlMask,           XK_e,       spawn,    XACMD("thunderbird")                },
   { MODKEY|ControlMask,           XK_f,       spawn,    STCMD("lfcd_sh")                    },  // execute lf in st and cd to last dir on exit
